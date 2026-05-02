@@ -1,0 +1,124 @@
+% protocolstyle.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{protocolstyle}[2026/02/18 Modular scientific protocol style]
+
+\RequirePackage[a4paper,margin=2.5cm,headheight=42pt,headsep=16pt]{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{sectsty}
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+\RequirePackage{array}
+\RequirePackage{enumitem}
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{hyperref}
+\RequirePackage{caption}
+\RequirePackage{float}
+\RequirePackage{lastpage}
+\RequirePackage{microtype}
+\RequirePackage{subfiles}
+
+\definecolor{ProtocolBlue}{HTML}{1F4E79}
+\definecolor{ProtocolGray}{HTML}{555555}
+\definecolor{LightGray}{HTML}{F4F6F8}
+
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65em}
+\setlist[itemize]{topsep=0.2em,itemsep=0.15em,leftmargin=1.5em}
+\setlist[enumerate]{topsep=0.2em,itemsep=0.15em,leftmargin=1.5em}
+\renewcommand{\arraystretch}{1.2}
+
+\captionsetup{font=small,labelfont=bf}
+
+% Metadata
+\newcommand{\CourseName}{Course Name}
+\newcommand{\ProtocolTitle}{Protocol Title}
+\newcommand{\SubmissionDate}{Date}
+\newcommand{\GroupMembers}{Name 1 -- ID 1; Name 2 -- ID 2}
+
+\newcommand{\setcourse}[1]{\renewcommand{\CourseName}{#1}}
+\newcommand{\setprotocoltitle}[1]{\renewcommand{\ProtocolTitle}{#1}}
+\newcommand{\setsubmissiondate}[1]{\renewcommand{\SubmissionDate}{#1}}
+\newcommand{\setgroupmembers}[1]{\renewcommand{\GroupMembers}{#1}}
+
+% ---------- Section formatting ----------
+% Chapter (größte Ebene)
+\titleformat{\chapter}
+{\normalfont\bfseries\fontsize{24pt}{28pt}\selectfont}
+{\thechapter}{1em}{}
+
+% Section (kleiner als chapter)
+\titleformat{\section}
+{\normalfont\bfseries\fontsize{18pt}{22pt}\selectfont}
+{\thesection}{1em}{}
+
+% Subsection
+\titleformat{\subsection}
+{\normalfont\bfseries\fontsize{14pt}{18pt}\selectfont}
+{\thesubsection}{1em}{}
+
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\bfseries \CourseName}
+\fancyhead[R]{\small\begin{tabular}{@{}r@{}}\GroupMembers\end{tabular}}
+\fancyfoot[L]{\small \ProtocolTitle}
+\fancyfoot[R]{\small Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Title page
+\newcommand{\makeprotocoltitle}{%
+\begin{titlepage}
+    \centering
+    \vspace*{2.5cm}
+    {\Large\bfseries \CourseName\par}
+    \vspace{0.5cm}
+    {\large \ModuleName\par}
+    \vspace{2cm}
+    {\Huge\bfseries\color{ProtocolBlue} \ProtocolTitle\par}
+    \vspace{2cm}
+    {\large\bfseries Group Members\par}
+    \vspace{0.4cm}
+    {\large\begin{tabular}{c}\GroupMembers\end{tabular}\par}
+    \vfill
+    {\large Submission Date: \SubmissionDate\par}
+\end{titlepage}
+}
+
+
+% Reusable semantic commands
+\newenvironment{abstractbox}{\begin{center}\begin{minipage}{0.92\textwidth}\small\textbf{Abstract.}\ }{\end{minipage}\end{center}\vspace{0.5cm}}
+\newcommand{\assignmentpage}[2]{\clearpage\section{#1}\label{#2}}
+\newcommand{\exercise}[1]{\subsection{#1}}
+\newcommand{\objective}{\subsubsection*{Objective}}
+\newcommand{\methodology}{\subsubsection*{Methodology}}
+\newcommand{\observations}{\subsubsection*{Observations}}
+\newcommand{\analysis}{\subsubsection*{Analysis}}
+\newcommand{\result}{\subsubsection*{Result}}
+\newcommand{\reflection}{\subsubsection*{Reflection}}
+
+\newenvironment{iteration}[1]{\subsubsection*{Iteration #1}\begin{description}[leftmargin=2.8cm,style=nextline]}{\end{description}}
+\newcommand{\iterationitem}[2]{\item[\textbf{#1}] #2}
+
+\newcommand{\placeholderfigure}[2][0.75\textwidth]{%
+    \begin{figure}[H]
+        \centering
+        \fbox{\begin{minipage}[c][4cm][c]{#1}\centering #2\end{minipage}}
+        \caption{#2}
+    \end{figure}
+}
+
+\newcommand{\protocolfigure}[3][0.75\textwidth]{%
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=#1]{#2}
+        \caption{#3}
+    \end{figure}
+}
+
+    
