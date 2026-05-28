@@ -40,7 +40,7 @@ arm_total_length = 34;
 // ------------------------------------------------------------
 
 // Horizontal distance that the locking head goes outward.
-head_length = 8;
+head_length = 6;
 
 // Vertical size of the locking head.
 // This should match the female side holes.
