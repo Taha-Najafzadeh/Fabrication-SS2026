@@ -1,0 +1,8 @@
+numpy
+trimesh[easy]
+shapely
+scipy
+matplotlib
+tqdm
+argparse
+pyglet==1.5

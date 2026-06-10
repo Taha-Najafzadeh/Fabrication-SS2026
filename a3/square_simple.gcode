@@ -1,0 +1,10 @@
+;Header start
+G90 ; absolute mode for X/Y/Z
+M82 ; absolute mode for E axis
+G21 ; units in millimeters
+;Square start
+G0 X40.000 Y50.000 Z0.200 F1440
+G1 X80.000 Y50.000 Z0.200 E1.000 F900
+G1 X80.000 Y90.000 Z0.200 E2.000 F900
+G1 X40.000 Y90.000 Z0.200 E3.000 F900
+G1 X40.000 Y50.000 Z0.200 E4.000 F900
